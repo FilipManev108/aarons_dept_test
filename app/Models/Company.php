@@ -12,4 +12,8 @@ class Company extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function shifts(){
+        return $this->hasMany(Shift::class);
+    }
 }

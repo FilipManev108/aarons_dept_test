@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Status;
+use App\Models\ShiftType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Shift extends Model
 {
@@ -21,4 +23,22 @@ class Shift extends Model
         'shift_type_id',
         'paid_at'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function status(){
+        return $this->belongsTo(Status::class);
+    }
+
+    public function shiftType()
+    {
+        return $this->belongsTo(ShiftType::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

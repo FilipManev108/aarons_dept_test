@@ -8,14 +8,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link @if(Route::is('employees.home')) {{'disabled'}} @endif" href="{{route('employees.home')}}">Home</a>
+                    <a class="nav-link @if(Route::is('employees.index')) {{'disabled'}} @endif" href="{{route('employees.index')}}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(Route::is('shifts.index')) {{'disabled'}} @endif" href="{{route('shifts.index')}}">Shifts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(Route::is('uploads.csv')) {{'disabled'}} @endif" href="{{route('uploads.csv')}}">Upload CSV</a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link @if(Route::is('employees.home')) {{'disabled'}} @endif" href="{{route('employees.home')}}">Home</a>
-                </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link @if(Route::is('shifts.create')) {{'disabled'}} @endif" href="{{route('shifts.create')}}">Add new shift</a>
+                </li>
             </ul>
         </div>
     </div>
