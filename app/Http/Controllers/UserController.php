@@ -25,22 +25,23 @@ class UserController extends Controller
     public function show(User $user)
     {
 
-        $baseQuery =
-        Shift::where('user_id', '=', $user->id)
-        ->where('status_id', '=', 1);
 
-        $lastFive =
-            $baseQuery->clone()
-            ->with('status', 'user', 'shiftType', 'company')
-            ->orderBy('date', 'desc')
-            ->limit(5)
-            ->get();
 
-        $average = $baseQuery->clone()
-            ->selectRaw('(SUM(`total_pay`) / SUM(`hours`)) AS pay_per_hour')
-            ->selectRaw('(SUM(`total_pay`) / COUNT(*)) AS total_pay')
-            ->get()
-            ->toArray();
+        $lastFive = Shift::where('user_id', '=', $user->id)
+        ->where('status_id', '=', 1)
+        ->with('status', 'user', 'shiftType', 'company')
+        ->orderBy('date', 'desc')
+        ->limit(5)
+        ->get();
+
+        $average = Shift::where('user_id', '=', $user->id)
+        ->where('status_id', '=', 1)
+        ->selectRaw('(SUM(`total_pay`) / SUM(`hours`)) AS pay_per_hour')
+        ->selectRaw('(SUM(`total_pay`) / COUNT(*)) AS total_pay')
+        ->get()
+        ->toArray();
+
+        
         $average = $average[0];
 
         return view('employees.show', compact('user', 'average', 'lastFive'));
