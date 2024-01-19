@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CSVController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::redirect('/', '/home');
+
+Route::get('/home', [CSVController::class, 'index'])->name('employees.home');
+
+Route::get('/upload', [CSVController::class, 'create'])->name('uploads.csv');
+Route::post('/upload', [CSVController::class, 'store'])->name('uploads.csv');
