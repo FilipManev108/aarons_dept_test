@@ -19,6 +19,8 @@ class UploadParsedCSV implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $timeout = 300;
+    
     /**
      * Create a new job instance.
      */
@@ -34,7 +36,7 @@ class UploadParsedCSV implements ShouldQueue
     {
         $dataForImport = [];
         $i = 0;
-        $file = fopen('storage/' . $this->path, 'r');
+        $file = fopen('storage/app/public/' . $this->path, 'r');
 
         while (($filedata = fgetcsv($file, 1000, ",")) !== false) {
             $count = count($filedata);

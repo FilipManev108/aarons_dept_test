@@ -35,7 +35,7 @@ class CSVController extends Controller
         $path = Storage::disk('public')->put('csv', $file);
 
         UploadParsedCSV::dispatch($path);
-        dump('done');
-        return redirect()->route('employees.home')->with('success', 'good job!');
+
+        return redirect()->route('shifts.index')->with('success', 'The shifts are being uploaded, this may take a few moments...');
     }
 }
